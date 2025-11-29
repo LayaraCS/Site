@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Modelos de Sections</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonte opcional -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f2f2f2;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .page-header h1 {
+      font-size: 1.8rem;
+      color: #004080;
+      margin-bottom: 6px;
+    }
+
+    .page-header p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    section {
+      margin-bottom: 24px;
+    }
+
+    .section-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 22px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid #e0e0e0;
+    }
+
+    .section-card h2 {
+      font-size: 1.2rem;
+      color: #004080;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #004080;
+      padding-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 8px;
+    }
+
+    ul li {
+      margin-bottom: 4px;
+    }
+
+    /* Botões genéricos */
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid #004080;
+      background-color: #004080;
+      color: #fff;
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #005bb5;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #004080;
+    }
+
+    .btn-outline:hover {
+      background-color: #e6f0ff;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 20px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-text h1 span {
+      color: #004080;
+    }
+
+    .hero-text p {
+      color: #555;
+      margin-bottom: 14px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: #e6f0ff;
+      color: #004080;
+      border: 1px solid #c5dafc;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-photo {
+      text-align: center;
+    }
+
+    .hero-photo .hero-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #004080;
+      background-color: #dbeafe;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #004080;
+      margin-bottom: 8px;
+    }
+
+    .hero-photo p {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* GALERIA COM HOVER */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background-color: #f9fafb;
+      cursor: pointer;
+    }
+
+    .portfolio-item img {
+      display: block;
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      align-items: flex-end;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .portfolio-desc {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    /* MODAL (apenas HTML + CSS com checkbox) */
+    .modal-toggle {
+      display: none;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px 22px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .modal-content h3 {
+      font-size: 1.1rem;
+      color: #004080;
+      margin-bottom: 8px;
+    }
+
+    .modal-content p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .modal-toggle:checked + .modal-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* FORMULÁRIOS DE CONTATO */
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 10px;
+    }
+
+    .contact-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-inline .form-group {
+      flex: 1 1 150px;
+    }
+
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .radio-group label,
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .testimonial-card {
+      background-color: #f9fafb;
+      border-radius: 8px;
+      padding: 12px 14px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .testimonial-quote {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .testimonial-author {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .testimonial-highlight {
+      border-left: 4px solid #004080;
+      padding-left: 10px;
+    }
+
+    /* VALUE PROPOSITION */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .value-item {
+      background-color: #f9fafb;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .value-item h3 {
+      font-size: 0.98rem;
+      color: #004080;
+      margin-bottom: 4px;
+    }
+
+    .value-item p {
+      font-size: 0.9rem;
+    }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .stat-box {
+      flex: 1 1 140px;
+      background-color: #f9fafb;
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #004080;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* FAQ (modelo 1) */
+    .faq-item {
+      margin-bottom: 8px;
+    }
+
+    .faq-item h3 {
+      font-size: 0.95rem;
+      color: #004080;
+      margin-bottom: 2px;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+    }
+
+    /* FAQ (modelo 2) usando <details> */
+    details {
+      margin-bottom: 8px;
+      background-color: #f9fafb;
+      border-radius: 6px;
+      padding: 8px 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #004080;
+      outline: none;
+      list-style: none;
+    }
+
+    details p {
+      margin-top: 4px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* FOOTERS */
+    footer {
+      padding: 16px 0;
+      font-size: 0.9rem;
+      color: #fff;
+      background-color: #004080;
+      margin-top: 10px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .footer-center {
+      text-align: center;
+    }
+
+    .footer-links {
+      margin-top: 4px;
+    }
+
+    .footer-links a {
+      color: #c4ddff;
+      text-decoration: none;
+      margin: 0 6px;
+      font-size: 0.85rem;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+      gap: 16px;
+    }
+
+    .footer-column h3 {
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .footer-column li {
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+    }
+
+    .footer-column a {
+      color: #dbeafe;
+      text-decoration: none;
+    }
+
+    .footer-column a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="page-header">
+      <h1>Modelos de Sections para Página de Currículo</h1>
+      <p>Copie a section que quiser e cole no seu currículo. Depois, personalize textos, cores e tamanhos.</p>
+    </header>
+
+    <!-- 1) HERO (HTML + CSS PURO) -->
+    <section id="hero-model" class="section-card">
+      <h2>Hero – Apresentação Rápida</h2>
+      <p class="section-subtitle">Use no topo do currículo</p>
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Olá, eu sou <span>Seu Nome Aqui</span></h1>
+          <p>Desenvolvedor(a) Web em formação, apaixonado(a) por criar interfaces simples, bonitas e responsivas para a web.</p>
+          <div class="hero-tags">
+            <span class="hero-tag">HTML &amp; CSS</span>
+            <span class="hero-tag">JavaScript</span>
+            <span class="hero-tag">Responsividade</span>
+            <span class="hero-tag">Aprendizado Contínuo</span>
+          </div>
+          <div class="hero-actions">
+            <a href="#" class="btn">Download CV</a>
+            <a href="#contato-form-1" class="btn btn-outline">Entrar em contato</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <div class="hero-avatar">
+            <img style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover;" src="img/imagem01.jpg" alt="">
+          </div>
+          <p>Substitua por uma imagem de perfil verdadeira no seu projeto.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) GALERIA DE FOTOS COM HOVER (PORTFÓLIO) -->
+    <section id="portfolio-model" class="section-card">
+      <h2>Galeria de Projetos (Portfólio)</h2>
+      <p class="section-subtitle">Use para mostrar trabalhos ou projetos criados</p>
+      <p>Alguns projetos que já desenvolvi para praticar programação e design:</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="img/imagem01.jpg" alt="Projeto 1">
+          <div class="portfolio-overlay">
+            <div>
+              <div class="portfolio-title">Portfolio Pessoal</div>
+              <div class="portfolio-desc">Site com currículo, habilidades e contato.</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="img/imagem01.jpg" alt="Projeto 2">
+          <div class="portfolio-overlay">
+            <div>
+              <div class="portfolio-title">Landing Page</div>
+              <div class="portfolio-desc">Página única para divulgação de um curso.</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="img/imagem01.jpg" alt="Projeto 3">
+          <div class="portfolio-overlay">
+            <div>
+              <div class="portfolio-title">Site Responsivo</div>
+              <div class="portfolio-desc">Layout adaptado para desktop, tablet e celular.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) CALL TO ACTION COM MODAL (HTML + CSS) -->
+
+    <!-- Checkbox que controla o modal -->
+    <input type="checkbox" id="contato-modal-toggle" class="modal-toggle">
+
+    <!-- Modal -->
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <label for="contato-modal-toggle" class="modal-close" title="Fechar">×</label>
+        <h3>Enviar mensagem rápida</h3>
+        <p>Preencha seus dados e deixe sua mensagem. Responderei assim que possível.</p>
+        <form>
+          <div class="form-group">
+            <label for="modal-nome">Nome</label>
+            <input type="text" id="modal-nome" placeholder="Seu nome completo">
+          </div>
+          <div class="form-group">
+            <label for="modal-email">E-mail</label>
+            <input type="email" id="modal-email" placeholder="seuemail@exemplo.com">
+          </div>
+          <div class="form-group">
+            <label for="modal-msg">Mensagem</label>
+            <textarea id="modal-msg" placeholder="Escreva uma mensagem curta..."></textarea>
+          </div>
+          <button type="submit" class="btn">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Section CTA -->
+    <section id="cta-modal-model" class="section-card">
+      <h2>Call to Action com Modal</h2>
+      <p class="section-subtitle">Use para incentivar contato direto</p>
+      <p>Interessado(a) em conversar sobre oportunidades, projetos ou estágios? Clique no botão abaixo para abrir um formulário rápido de contato.</p>
+      <label for="contato-modal-toggle" class="btn">Falar comigo agora</label>
+    </section>
+
+    <!-- 4) TRÊS SECTIONS DIFERENTES PARA FORMULÁRIO DE CONTATO -->
+
+    <!-- Contato 1: Layout simples em coluna -->
+    <section id="contato-form-1" class="section-card">
+      <h2>Contato – Modelo 1 (simples)</h2>
+      <p class="section-subtitle">Formulário básico em coluna única</p>
+      <form>
+        <div class="form-group">
+          <label for="c1-nome">Nome</label>
+          <input type="text" id="c1-nome" placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+          <label for="c1-email">E-mail</label>
+          <input type="email" id="c1-email" placeholder="seuemail@exemplo.com">
+        </div>
+        <div class="form-group">
+          <label for="c1-assunto">Assunto</label>
+          <input type="text" id="c1-assunto" placeholder="Ex: Vaga de estágio, projeto, parceria...">
+        </div>
+        <div class="form-group">
+          <label for="c1-msg">Mensagem</label>
+          <textarea id="c1-msg" placeholder="Escreva aqui a sua mensagem"></textarea>
+        </div>
+        <button type="submit" class="btn">Enviar mensagem</button>
+      </form>
+    </section>
+
+    <!-- Contato 2: Duas colunas (dados pessoais + detalhes) -->
+    <section id="contato-form-2" class="section-card">
+      <h2>Contato – Modelo 2 (duas colunas)</h2>
+      <p class="section-subtitle">Dividido em dados pessoais e detalhes do contato</p>
+      <form>
+        <div class="contact-grid-2">
+          <div>
+            <div class="form-group">
+              <label for="c2-nome">Nome</label>
+              <input type="text" id="c2-nome" placeholder="Seu nome completo">
+            </div>
+            <div class="form-group">
+              <label for="c2-email">E-mail</label>
+              <input type="email" id="c2-email" placeholder="seuemail@exemplo.com">
+            </div>
+            <div class="form-group">
+              <label for="c2-telefone">Telefone (opcional)</label>
+              <input type="tel" id="c2-telefone" placeholder="(00) 00000-0000">
+            </div>
+          </div>
+          <div>
+            <div class="form-group">
+              <label for="c2-tipo">Motivo do contato</label>
+              <select id="c2-tipo">
+                <option>Selecione uma opção</option>
+                <option>Oportunidade de trabalho</option>
+                <option>Projeto pontual</option>
+                <option>Parceria</option>
+                <option>Outros</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="c2-msg">Mensagem</label>
+              <textarea id="c2-msg" placeholder="Descreva rapidamente o motivo do contato"></textarea>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn">Enviar contato</button>
+      </form>
+    </section>
+
+    <!-- Contato 3: Preferência de contato + horários -->
+    <section id="contato-form-3" class="section-card">
+      <h2>Contato – Modelo 3 (preferências)</h2>
+      <p class="section-subtitle">Inclui preferência de contato e horário</p>
+      <form>
+        <div class="contact-inline">
+          <div class="form-group">
+            <label for="c3-nome">Nome</label>
+            <input type="text" id="c3-nome" placeholder="Seu nome">
+          </div>
+          <div class="form-group">
+            <label for="c3-email">E-mail</label>
+            <input type="email" id="c3-email" placeholder="seuemail@exemplo.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Forma de contato preferida</label>
+          <div class="radio-group">
+            <label><input type="radio" name="contato-preferido" value="email" checked> E-mail</label>
+            <label><input type="radio" name="contato-preferido" value="whatsapp"> WhatsApp</label>
+            <label><input type="radio" name="contato-preferido" value="ligacao"> Ligação</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Melhor período para retorno</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" value="manha"> Manhã</label>
+            <label><input type="checkbox" value="tarde"> Tarde</label>
+            <label><input type="checkbox" value="noite"> Noite</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="c3-msg">Mensagem</label>
+          <textarea id="c3-msg" placeholder="Deixe uma mensagem adicional, se quiser"></textarea>
+        </div>
+
+        <button type="submit" class="btn">Enviar preferências</button>
+      </form>
+    </section>
+
+    <!-- 5) DOIS MODELOS DE TESTIMONIAL -->
+
+    <!-- Testimonial modelo 1: grid com dois depoimentos -->
+    <section id="testimonial-1" class="section-card">
+      <h2>Depoimentos – Modelo 1 (dois cartões)</h2>
+      <p class="section-subtitle">Use para mostrar recomendações de professores, colegas ou clientes</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">“Aluno(a) extremamente dedicado(a), sempre interessado(a) em aprender e melhorar seu código.”</p>
+          <p class="testimonial-author">— Professor(a) de Programação Web</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">“Trabalhar com ele(a) em projetos em grupo foi muito tranquilo, sempre contribui com ideias e organização.”</p>
+          <p class="testimonial-author">— Colega de turma</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial modelo 2: destaque único -->
+    <section id="testimonial-2" class="section-card">
+      <h2>Depoimentos – Modelo 2 (destaque único)</h2>
+      <p class="section-subtitle">Um depoimento principal em destaque</p>
+      <div class="testimonial-card testimonial-highlight">
+        <p class="testimonial-quote">“Mesmo ainda em formação, já demonstra postura profissional, curiosidade e responsabilidade. Vejo um grande potencial de crescimento na área de desenvolvimento.”</p>
+        <p class="testimonial-author">— Mentor(a) / Coordenador(a)</p>
+      </div>
+    </section>
+
+    <!-- 6) VALUE PROPOSITION -->
+    <section id="value-proposition" class="section-card">
+      <h2>Value Proposition (Proposta de Valor)</h2>
+      <p class="section-subtitle">Mostre por que alguém deve te contratar</p>
+      <p>Minha proposta de valor como profissional em formação é unir vontade de aprender, organização e foco em resultado para contribuir com a equipe e crescer junto com a empresa.</p>
+      <div class="value-grid">
+        <div class="value-item">
+          <h3>Aprendizado rápido</h3>
+          <p>Tenho facilidade para aprender novas tecnologias e ferramentas, sempre buscando cursos e materiais extras.</p>
+        </div>
+        <div class="value-item">
+          <h3>Responsabilidade</h3>
+          <p>Levo prazos e compromissos a sério, entregando o que foi combinado com qualidade.</p>
+        </div>
+        <div class="value-item">
+          <h3>Trabalho em equipe</h3>
+          <p>Gosto de colaborar, ouvir sugestões e contribuir com ideias para melhorar o projeto.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) STATS -->
+    <section id="stats-model" class="section-card">
+      <h2>Resumo em Números (Stats)</h2>
+      <p class="section-subtitle">Mostre um resumo do seu perfil em números</p>
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-number">+10</div>
+          <div class="stat-label">Projetos práticos</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">+150h</div>
+          <div class="stat-label">Horas de estudo em programação</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Cursos concluídos</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8) DUAS OPÇÕES DE FAQ -->
+
+    <!-- FAQ 1: perguntas e respostas simples -->
+    <section id="faq-1" class="section-card">
+      <h2>FAQ – Modelo 1 (simples)</h2>
+      <p class="section-subtitle">Perguntas frequentes sobre mim</p>
+      <div class="faq-item">
+        <h3>Você já tem experiência profissional?</h3>
+        <p>Ainda não tive uma experiência formal na área, mas tenho praticado com projetos pessoais e acadêmicos.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Você aceita estágio ou vaga júnior?</h3>
+        <p>Sim, estou aberto(a) tanto para estágios quanto para posições júnior em desenvolvimento web.</p>
+      </div>
+    </section>
+
+    <!-- FAQ 2: usando <details> como acordeão -->
+    <section id="faq-2" class="section-card">
+      <h2>FAQ – Modelo 2 (details)</h2>
+      <p class="section-subtitle">Versão com acordeão sem JavaScript</p>
+      <details>
+        <summary>Em qual área você quer atuar?</summary>
+        <p>Tenho interesse em atuar principalmente com desenvolvimento Front-end, trabalhando com HTML, CSS e JavaScript.</p>
+      </details>
+      <details>
+        <summary>Está disponível para trabalho remoto?</summary>
+        <p>Sim, desde que exista uma boa comunicação com a equipe e organização das tarefas.</p>
+      </details>
+    </section>
+
+    <!-- 9) DUAS OPÇÕES DE FOOTER -->
+
+    <!-- FOOTER 1 – Simples e centralizado -->
+    <!-- Use APENAS UM footer no seu site real -->
+    <footer id="footer-1">
+      <div class="footer-inner footer-center">
+        <p>&copy; 2025 Seu Nome — Todos os direitos reservados.</p>
+        <div class="footer-links">
+          <a href="#">LinkedIn</a> |
+          <a href="#">GitHub</a> |
+          <a href="#">Portfólio</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FOOTER 2 – Em colunas -->
+    <!-- Se usar este, remova o footer 1 do seu código final -->
+    <footer id="footer-2">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <h3>Sobre mim</h3>
+            <p>Desenvolvedor(a) Web em formação, buscando a primeira oportunidade na área de tecnologia.</p>
+          </div>
+          <div class="footer-column">
+            <h3>Contato</h3>
+            <ul>
+              <li>E-mail: seuemail@exemplo.com</li>
+              <li>Telefone: (00) 00000-0000</li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Links</h3>
+            <ul>
+              <li><a href="#hero-model">Início</a></li>
+              <li><a href="#portfolio-model">Portfólio</a></li>
+              <li><a href="#contato-form-1">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

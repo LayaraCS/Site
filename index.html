@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!-- COMENTÁRIO -->
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layara</title>
+
+     <!-- Fonte Alternativa -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Momo+Trust+Display&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Importando ícones do Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <style>
+        /* Reset básico */
+        * {
+    margin: 0;
+    padding: 0;
+        }
+     body {
+      font-family: "Inter", sans-serif;
+      background-color: #9061b3;
+      color: #333;
+    }    
+     header {
+      background-color: #6a2d98;
+      color: rgb(188, 15, 78);
+      text-align: center;
+      padding: 40px 20px;
+    }
+     header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid white;
+    }
+
+      /* MENU */
+
+    nav {
+      width: 100%;
+      background-color: #521a65;
+      text-align: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: rgb(188, 15, 78);
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #902248;
+      border-bottom: 2px solid #902248;
+      padding-bottom: 5px;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+     .social a {
+      color: #902248;
+      margin-right: 10px;
+      font-size: 24px;
+    }
+     video {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+     footer {
+      background-color: #521a65;
+      color: rgb(188, 15, 78);
+      text-align: center;
+      padding: 15px;
+      font-size: 15px;
+    }
+    .social-media a {
+      color: #902248;
+      margin-right: 15px;
+      font-size: 28px;
+      text-decoration: none;
+    }
+    
+    /* MODAL (apenas HTML + CSS com checkbox) */
+    .modal-toggle {
+      display: none;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 20px 22px;
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .modal-content h3 {
+      font-size: 1.1rem;
+      color: #902248;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      font-size: 0.9rem;
+      color: #555;
+      padding: 8px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .modal-toggle:checked + .modal-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+    .btn.cta {
+      background-color: #902248;
+      border-radius: 30px;
+      color: white;
+      padding: 10px 20px;
+    }
+    #cta-modal-model > div {
+      margin-top: 15px;
+    }
+  /* FORMULÁRIOS DE CONTATO */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #902248;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 8px 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+     /* FAQ (modelo 1) */
+    .faq-item {
+      margin-bottom: 8px;
+    }
+ /* FAQ (modelo 1) */
+    .faq-item {
+      margin-bottom: 8px;
+    }
+
+     /* FAQ (modelo 2) usando <details> */
+    details {
+      margin-bottom: 8px;
+      background-color: #f9fafb;
+      border-radius: 6px;
+      padding: 8px 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .form-group > div{
+      color: red !important;
+    }
+
+    </style>
+</head>
+
+<body>
+
+  <!--HEADER-->
+    <header>
+        <img src="img/fooooto.jpeg" alt="Perfil" width="350">
+        <h1>LAYARA CAMPOS SANTANA</h1>
+        <p><em>Residente Jurídico</em></p>
+    </header>
+
+      <!--MENU-->
+    <nav>
+      <ul>
+        <a href="#sobre">Sobre</a> 
+        <a href="#habilidades">Habilidades</a> 
+        <a href="#experiência">Experiência</a> 
+        <a href="#contato">Contato</a> 
+      </ul>
+    </nav>
+
+    <main>
+        <section id="sobre">
+            <h2>Sobre mim</h2>
+            <p>Bacharel em Direito, apaixonada por essa área, pós graduanda em Direito Penal e Processual Penal, especialista em Direito de Família</p>
+
+        </section>
+
+        <section id="habilidades">
+            <h2>Habilidades</h2>
+            <ul>
+                <li>Assessoria Jurídica</li>
+                <li>Especialista na área da Família, Órfãos e Sucessões</li>
+            </ul>
+        </section>
+
+        <section id="experiência">
+            <h2>Experiência Profissional</h2>     
+    <section id="faq-1" class="section-card"> <br>
+      <div class="faq-item">
+        <h3>Você já tem experiência profissional?</h3>
+        <p>Sim. Estagiei mais de 03 (três) anos em cartório de Vara de Família, e atualmente atuo como Residente Jurídica no gabinete do mesmo Juízo há quase 03 (três) anos. <ul>
+            </ul></p>
+      </div>
+      <div class="faq-item">
+        <h3>Você aceita estágio ou vaga de assessor?</h3>
+        <p>No momento como estagiária, dado todo o meu conhecimento, inicialmente, minha resposta seria que não tenho interesse, mas, eu estou disposta a pensar a respeito, a depender da proposta. Outrossim, estou aberta para vaga de assessoria gabinetes.</p>
+      </div>
+
+    <section id="faq-2" class="section-card">
+      <details>
+        <summary>Em qual área você quer atuar?</summary>
+        <p>Tenho interesse em atuar principalmente com procedimentos envolvendo a àrea do direito de família e, em segundo caso, direito criminal.</p>
+      </details>
+      <details>
+        <summary>Está disponível para trabalho remoto?</summary>
+        <p>Sim, desde que exista uma boa comunicação com a equipe e organização das tarefas.</p>
+      </details>
+    </section>
+
+        <section id="contato">
+            <h2>Contato e Redes Sociais</h2>
+            <p><strong>Email:</strong>laycampossant@gmail.com</p>
+            <p><strong>Telefone</strong>(27) 99987-5167</p>
+
+            <div class="social media">
+                <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                    </a>
+            </div>
+        </section> 
+
+       
+    <!-- Section CTA -->
+    <section id="cta-modal-model" class="section-card">
+      <h2>Tire Suas Dúvidas Aqui</h2>
+      <p>Interessado(a) em saber mais sobre os seus direitos? Procurando assessoria jurídica? Dúvidas relacionadas, clique no botão abaixo para abrir um formulário rápido de contato.</p>
+      <div>    
+      <label for="contato-modal-toggle" class="btn cta">Falar comigo agora</label>
+      </div>
+    </section>
+
+    </main>
+    
+    <footer>   
+        <p>&copy; 2025 Layara Santana - All rights reserved.</p>  
+    </footer>
+
+    <!-- 3) CALL TO ACTION COM MODAL (HTML + CSS) -->
+    <!-- Checkbox que controla o modal -->
+    <input type="checkbox" id="contato-modal-toggle" class="modal-toggle">
+
+    <!-- Modal -->
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <label for="contato-modal-toggle" class="modal-close" title="Fechar">×</label>
+        <h3>Enviar mensagem rápida</h3>
+        <p>Preencha seus dados e deixe sua mensagem. Responderei assim que possível.</p>
+        <form>
+          <div class="form-group">
+            <label for="modal-nome">Nome</label>
+            <input type="text" id="modal-nome" placeholder="Seu nome completo">
+            <div id="nome"></div>
+          </div>
+          <div class="form-group">
+            <label for="modal-email">E-mail</label>
+            <input type="email" id="modal-email" placeholder="seuemail@exemplo.com">
+            <div id="email"></div>
+          </div>
+          <div class="form-group">
+            <label for="modal-msg">Mensagem</label>
+            <textarea id="modal-msg" placeholder="Escreva uma mensagem curta..."></textarea>
+             <div id="mensagem"></div>
+          </div>
+          <button type="button" onclick="envioEmail()" class="btn" style="color: #902248;">Enviar</button>
+
+           <!-- Popup de Sucesso -->
+          <div id="Sua solicitação foi enviada com Sucesso!" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #4CAF50; color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 10000; text-align: center;">
+              <p style="margin: 0; font-size: 18px;">✓ Sua solicitação foi enviada com Sucesso!</p>
+              <button onclick="fecharPopupSucesso()" style="margin-top: 15px; background: white; color: #4CAF50; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">OK</button>
+          </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <script>
+
+      function envioEmail(){
+
+         let nome = document.getElementById('modal-nome').value;
+    let email = document.getElementById('modal-email').value;
+    let mensagem = document.getElementById('modal-msg').value;
+    
+    if(!nome) {
+        document.getElementById("nome").innerHTML = "O nome não foi informado.";
+        return;
+    }
+    
+    if(!email) {
+        document.getElementById("email").innerHTML = "O email não foi informado.";
+        return;
+    }
+    
+    if(!mensagem) {
+        document.getElementById("mensagem").innerHTML = "A mensagem não está completa.";
+        return;
+    }
+    
+    // Se passou por todas as validações, mostra mensagem de sucesso
+    // Limpa os campos
+     document.getElementById('modal-nome').value = '';
+    document.getElementById('modal-email').value = '';
+    document.getElementById('modal-msg').value = '';
+    
+    // Limpa mensagens de erro (se houver)
+    document.getElementById("nome").innerHTML = "";
+    document.getElementById("email").innerHTML = "";
+    document.getElementById("mensagem").innerHTML = "";
+    
+    // Mostra o popup de sucesso
+    document.getElementById("Sua solicitação foi enviada com Sucesso!").style.display = "block";
+}
+
+function fecharPopupSucesso() {
+    document.getElementById("Sua solicitação foi enviada com Sucesso!").style.display = "none";
+    // Opcional: fechar o modal do formulário também
+    document.querySelector('.modal-overlay').style.display = 'none';
+}
+      
+    </script>
+    
+</body>
+</html>
